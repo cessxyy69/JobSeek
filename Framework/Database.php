@@ -1,5 +1,9 @@
 <?php
 
+namespace Framework;
+
+use PDO;
+
 class Database
 {
     public $conn;
@@ -17,9 +21,13 @@ class Database
         }
     }
 
-    public function query($query) {
+    public function query($query, $params = []) {
         try {
             $sth = $this->conn->prepare($query);
+            // Bind named params
+            foreach ($params as $param => $value) {
+                $sth->bindParam(':' . $param, $value);
+            }
             $sth->execute();
             return $sth;
         } catch (PDOException $e) {

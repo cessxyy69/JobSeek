@@ -1,0 +1,16 @@
+{
+    "name": "cessxyy69/jobseek",
+    "description": "Job Board Application",
+    "authors": [
+        {
+            "name": "Princess Lyka Santos",
+            "email": "jlyka090926@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Framework\\": "Framework/",
+            "App\\": "App/"
+        }
+    }
+}
