@@ -5,6 +5,7 @@
 
 <section class="container mx-auto p-4 mt-4">
     <div class="rounded-lg shadow-md bg-white p-3">
+        <?= loadPartial('message') ?>
         <div class="flex justify-between items-center mb-4">
             <a class="inline-flex items-center font-bold transition duration-300" style="color: #2563EB;" onmouseover="this.style.color='#1e40af'" onmouseout="this.style.color='#2563EB'" href="/listings">
                 <i class="fa fa-arrow-alt-circle-left mr-2"></i>

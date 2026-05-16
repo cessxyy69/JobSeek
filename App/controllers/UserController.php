@@ -1,0 +1,96 @@
+<?php
+
+namespace App\Controllers;
+
+use Framework\Database;
+use Framework\Validator;
+
+class UserController
+{
+    protected $db;
+
+    public function __construct()
+    {
+        $config = require basePath('config/db.php');
+        $this->db = new Database($config);
+    }
+
+    /**
+     * Show Login Page
+     * 
+     * @return void
+     */
+
+    public function login()
+    {
+        loadview('users/login');
+    }
+
+    /**
+     * Show Create Page
+     * 
+     * @return void
+     */
+
+    public function create()
+    {
+        loadview('users/create');
+    }
+    /**
+     * Store user to db
+     * 
+     * @return void
+     */
+    public function store()
+    {
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $city = $_POST['city'];
+        $state = $_POST['state'];
+        $password = $_POST['password'];
+        $passwordConfirmation = $_POST['password_confirmation'];
+
+        $errors = [];
+
+        //Validation
+        if(!\Framework\Validation::email($email))
+        {
+            $errors['email'] = 'Please enter a valid email address';
+        }
+
+        if(!\Framework\Validation::string($name, 2, 50))
+        {
+            $errors['name'] = 'Name must be 2 and 50 characters';
+        }
+
+        if(!\Framework\Validation::string($password, 6, 50))
+        {
+            $errors['password'] = 'Password must be at least 6 characters';
+        }
+
+        if(!\Framework\Validation::match($password, $passwordConfirmation))
+        {
+            $errors['password_confirmation'] = 'Passwords do not match';
+        }
+
+        
+
+        if(!empty($errors))
+        {
+            loadview('users/create', [
+                'errors' => $errors,
+                'users' => [
+                    'name' => $name,
+                    'email' => $email,
+                    'city' => $city,
+                    'state' => $state
+                ]
+            ]);
+            exit;
+        } else {
+            inspectAndDie('Store');
+        }
+
+        
+    }
+}
