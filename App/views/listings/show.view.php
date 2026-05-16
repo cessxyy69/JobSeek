@@ -11,7 +11,7 @@
                 Back To Listings
             </a>
             <div class="flex items-center gap-4">
-                <a href="/edit" class="flex items-center justify-center px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-regular rounded shadow-sm">Edit</a>
+                <a href="/listings/edit/<?= $listing->id ?>" class="flex items-center justify-center px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-regular rounded shadow-sm">Edit</a>
                 <!-- Delete Form -->
                 <form method="POST" style="display: contents;">
                     <input type="hidden" name="_method" value="DELETE">
