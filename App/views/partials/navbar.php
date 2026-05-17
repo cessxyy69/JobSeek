@@ -13,7 +13,7 @@ use Framework\Session;
                     <circle cx="18" cy="18" r="3"/>
                     <path d="m22 22-1.5-1.5"/>
                 </svg>
-                <span>JobSeek</span>
+                <span>Job<span style="color: var(--color-accent);">Seek</span></span>
             </a>
         </h1>
         <nav class="space-x-4">

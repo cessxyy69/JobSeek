@@ -23,9 +23,9 @@
             </div>
             <?php endif; ?>
         </div>
-        <div class="p-4">
+        <div class="p-4" style="color: #0F172A;">
             <h2 class="text-xl font-semibold"><?= $listing->title ?></h2>
-            <p class="text-gray-700 text-lg mt-2">
+            <p class="text-lg mt-2">
                 <?= $listing->description ?>
             </p>
             <ul class="my-4 bg-gray-100 p-4">
@@ -45,16 +45,16 @@
     </div>
 </section>
 
-<section class="container mx-auto p-4">
-    <h2 class="text-xl font-semibold mb-4">Job Details</h2>
+<section class="container mx-auto p-4" style="color: #0F172A;">
+    <h2 class="text-xl font-semibold mb-4" style="color: #0F172A !important;">Job Details</h2>
     <div class="rounded-lg shadow-md bg-white p-4">
-        <h3 class="text-lg font-semibold mb-2">
+        <h3 class="text-lg font-semibold mb-2" style="color: #0F172A !important;">
             Job Requirements
         </h3>
         <p>
             <?= $listing->requirements ?? 'No specific requirements listed.' ?>
         </p>
-        <h3 class="text-lg font-semibold mt-4 mb-2">Benefits</h3>
+        <h3 class="text-lg font-semibold mt-4 mb-2" style="color: #0F172A !important;">Benefits</h3>
         <p><?= $listing->benefits ?? 'No specific benefits listed.' ?></p>
     </div>
     <p class="my-5">

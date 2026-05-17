@@ -9,7 +9,7 @@
                     <circle cx="18" cy="18" r="3"/>
                     <path d="m22 22-1.5-1.5"/>
                 </svg>
-                <h3>JobSeek</h3>
+                <h3>Job<span style="color: var(--color-accent);">Seek</span></h3>
             </div>
             <p>Empowering professionals to find their dream careers and helping companies hire top-tier talent globally. Join our community today.</p>
             <!-- Social Media Icons -->

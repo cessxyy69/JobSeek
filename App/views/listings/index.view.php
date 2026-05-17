@@ -5,7 +5,7 @@
 <!-- Job Listings -->
 <section>
     <div class="container mx-auto p-4 mt-4">
-        <h2 class="text-center text-3xl mb-4 font-bold border border-gray-300 p-3">
+        <h2 class="text-center text-3xl mb-4 font-bold border border-gray-300 p-3 text-white" style="background-color: #1D4ED8;">
             <?php if (isset($keywords) && $keywords !== '' && isset($location) && $location !== '') : ?>
                 Search Results for '<?= htmlspecialchars($keywords) ?>' in '<?= htmlspecialchars($location) ?>'
             <?php elseif (isset($keywords) && $keywords !== '') : ?>
@@ -40,7 +40,7 @@
                         <?php endif; ?>
                     </ul>
                     <a href="/listings/<?= $listing->id ?>"
-                        class="block w-full text-center px-5 py-2.5 shadow-sm rounded border text-base font-medium text-indigo-700 bg-indigo-100 hover:bg-indigo-200">
+                        class="block w-full text-center px-5 py-2.5 shadow-sm rounded border text-base font-medium text-white hover:opacity-90" style="background-color: #1D4ED8 !important;">
                         Details
                     </a>
                 </div>

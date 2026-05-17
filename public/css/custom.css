@@ -25,15 +25,15 @@
    ---------------------------------------------------------------- */
 
 :root {
-  --color-header: #314E6E;
+  --color-header: #0F172A;
   /* Header at navigation bar */
-  --color-accent: #6EA8FE;
+  --color-accent: #2563EB;
   /* "Post a Job" button at mga highlight */
-  --color-page-bg: #DCE6F2;
+  --color-page-bg: #F1F5F9;
   /* Background ng buong page */
   --color-card-bg: #F8FAFC;
   /* Background ng mga card/box */
-  --color-heading: #1E293B;
+  --color-heading: #94A3B8;
   /* Kulay ng mga title at heading */
   --color-body-text: #475569;
   /* Regular na body text */
@@ -43,7 +43,7 @@
   /* Background ng mga tag/badge */
   --color-tag-text: #1E3A8A;
   /* Text ng mga tag/badge */
-  --color-footer: #314E6E;
+  --color-footer: #0F172A;
   /* Footer background */
   --showcase-overlay: rgba(30, 41, 59, 0.3);
   /* Hero banner overlay
@@ -254,21 +254,21 @@ a.btn-primary-action {
 /* --- MODERN FOOTER STYLES --- */
 .modern-footer {
   background-color: var(--color-footer) !important;
-  padding-top: 5rem !important;
-  padding-bottom: 2rem !important;
-  margin-top: 5rem !important;
+  padding-top: 2.5rem !important;
+  padding-bottom: 0 !important;
+  margin-top: 2.5rem !important;
   border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
 .footer-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 30px 30px;
+  padding: 0 30px;
   display: flex;
   flex-wrap: wrap;
-  gap: 3rem;
+  gap: 2rem;
   justify-content: space-between;
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
 }
 
 .footer-brand {
@@ -414,7 +414,7 @@ a.btn-primary-action {
 
 .footer-bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 1.5rem 0;
+  padding: 1rem 0;
 }
 
 .footer-bottom-container {
