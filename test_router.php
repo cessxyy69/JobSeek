@@ -1,1 +1,1 @@
-<?php echo " hit index\;
+<?php echo " hit index\

@@ -5,7 +5,17 @@
 <!-- Job Listings -->
 <section>
     <div class="container mx-auto p-4 mt-4">
-        <h2 class="text-center text-3xl mb-4 font-bold border border-gray-300 p-3">All Jobs</h2>
+        <h2 class="text-center text-3xl mb-4 font-bold border border-gray-300 p-3">
+            <?php if (isset($keywords) && $keywords !== '' && isset($location) && $location !== '') : ?>
+                Search Results for '<?= htmlspecialchars($keywords) ?>' in '<?= htmlspecialchars($location) ?>'
+            <?php elseif (isset($keywords) && $keywords !== '') : ?>
+                Search Results for '<?= htmlspecialchars($keywords) ?>'
+            <?php elseif (isset($location) && $location !== '') : ?>
+                Search Results in '<?= htmlspecialchars($location) ?>'
+            <?php else : ?>
+                All Jobs
+            <?php endif; ?>
+        </h2>
         <?= loadPartial('message') ?>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
             <?php foreach ($listings as $listing): ?>
