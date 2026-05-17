@@ -123,10 +123,11 @@ class UserController
         $this->db->query("INSERT INTO users (name, email, city, state, password) VALUES (:name, :email, :city, :state, :password)", $params);
         
         //Get new user ID
-        $userId = $this->db->conn->lastInsertId();
+        $userid = $this->db->conn->lastInsertId();
 
+        //Set user session
         Session::set('user', [
-            'id' => $userId,
+            'id' => $userid,
             'name' => $name,
             'email' => $email,
             'city' => $city,
@@ -148,5 +149,72 @@ class UserController
         setcookie('PHPSESSID', '', time() - 86400, $params['path'], $params['domain']);
 
         redirect('/');
+    }
+
+    /**
+     * Authenticate a user with email and password
+     * @return void
+     */
+    public function authenticate()
+    {
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        $errors = [];
+
+        //Validation
+        if(!Validation::email($email)) {
+            $errors['email'] = 'Please enter a valid email address';
+        }
+
+        if(!Validation::string($password, 6, 50)) {
+            $errors['password'] = 'Password must be at least 6 characters';
+        }
+
+        //Check for error
+        if(!empty($errors)) {
+            loadview('users/login', [
+                'errors' => $errors
+            ]);
+            exit;
+        }
+
+        //Check for email
+        $params = [
+            'email' => $email
+        ];
+
+        $user = $this->db->query("SELECT * FROM users WHERE email = :email", $params)->fetch();
+
+        if(!$user) {
+            $errors['email'] = 'Incorrect credentials';
+            loadview('users/login', [
+                'errors' => $errors
+            ]);
+            exit;
+        }
+
+        /**
+         * Check if password is correct
+         */
+        if(!password_verify($password, $user->password)) {
+            $errors['password'] = 'Incorrect credentials';
+            loadview('users/login', [
+                'errors' => $errors
+            ]);
+            exit;
+        }
+
+        // Set user session
+        Session::set('user', [
+            'id' => $user->id,
+            'name' => $user->name,
+            'email' => $user->email,
+            'city' => $user->city,
+            'state' => $user->state
+        ]);
+
+        redirect('/');
+        
     }
 }

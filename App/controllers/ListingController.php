@@ -2,6 +2,8 @@
 namespace App\Controllers;
 use Framework\Database;
 use Framework\Validation;
+use Framework\Session;
+use Framework\Authorization;
 
 class ListingController
 {
@@ -15,7 +17,7 @@ class ListingController
 
     public function index()
     {
-        $listings = $this->db->query('SELECT * FROM listings')->fetchALL();
+        $listings = $this->db->query('SELECT * FROM listings ORDER BY created_at DESC')->fetchALL();
 
         loadView('listings/index', ['listings' => $listings]);
     }
@@ -67,7 +69,7 @@ class ListingController
 
         $newListingData = array_intersect_key($_POST, array_flip($allowedFields));
 
-        $newListingData['user_id'] = 1;
+        $newListingData['user_id'] = Session::get('user')['id'];
         $newListingData = array_map('sanitize', $newListingData);
 
         $requiredFields = [
@@ -139,15 +141,23 @@ class ListingController
 
         $listing = $this->db->query('SELECT * FROM listings WHERE id = :id', $params)->fetch();
 
+        //Check if listing exists
         if (!$listing) {
             ErrorController::notFound('Listing not found');
             return;
         }
 
+        //Authorization
+        if(!Authorization::isOwner($listing->user_id))
+        {
+            $_SESSION['error_message'] = 'You are not authorized to delete this listing';
+            redirect('/listings/' . $id);
+        }
+
         $this->db->query('DELETE FROM listings WHERE id = :id', $params);
 
         //Set flash message
-        $_SESSION['success_message'] = 
+        $_SESSION['success_message'] = 'Listing deleted successfully';
 
         redirect('/listings');
     }
